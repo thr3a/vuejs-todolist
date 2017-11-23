@@ -2,8 +2,8 @@
   <div id="app">
     <h1>TODO app</h1>
     <ul>
-      <li v-for="task in tasks">
-        {{ task }}
+      <li v-for="(task, index) in tasks">
+        {{ task }}<input type='button' value='x' v-on:click="remove(index)">
       </li>
     </ul>
     <input type='text' v-model='newTask'>
@@ -26,6 +26,9 @@ export default {
     add: function(e) {
       this.tasks.unshift(this.newTask);
       this.newTask = '';
+    },
+    remove: function(index) {
+      this.tasks.splice(index, 1);
     }
   }
 }
